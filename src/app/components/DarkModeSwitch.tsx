@@ -5,17 +5,18 @@ import { BsFillMoonFill } from "react-icons/bs";
 import { useTheme } from "next-themes";
 
 const DarkModeSwitch = () => {
-  const [mounted, setMounted] = useState(false);
+  
   const { resolvedTheme , setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
 
  
   return (
     <>
-      {mounted && resolvedTheme === "dark" ? (
+      {mounted && (resolvedTheme === "dark" ? (
         <MdLightMode className="cursor-pointer" onClick={() => setTheme("light")} />
       ) : (
-        <BsFillMoonFill className="cursor-pointer" onClick={() => setTheme("dark")} />
+        <BsFillMoonFill className="cursor-pointer" onClick={() => setTheme("dark")} />)
       )}
     </>
   );

@@ -4,10 +4,10 @@ import DarkModeSwitch from "./DarkModeSwitch";
 
 const Navbar = () => {
   return (
-    <div className="flex justify-between text-xl mt-6 max-w-6xl items-center m-auto px-4">
-      <div className="flex text-center justify-center items-center">
-        <BiLogOutCircle className="text-4xl cursor-pointer hover:text-red-500 transition-colors " />
-        <p className=" hidden sm:inline-flex ml-1 text-center">Logout</p>
+    <div className="flex justify-between text-xl mt-8 max-w-6xl items-center m-auto px-4">
+      <div className="flex text-center justify-center items-center group cursor-pointer">
+        <BiLogOutCircle className="text-4xl cursor-pointer hover:text-red-500 transition-colors group-hover:text-red-500" />
+        <p className=" hidden sm:inline-flex ml-1 text-center group-hover:text-red-500 transition-colors">Logout</p>
       </div>
 
       <h1 className="text-4xl font-bold">My Notes</h1>
