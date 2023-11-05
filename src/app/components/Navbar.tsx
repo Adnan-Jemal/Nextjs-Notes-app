@@ -1,19 +1,16 @@
 import React from "react";
-import { BiLogOutCircle } from "react-icons/bi";
 import DarkModeSwitch from "./DarkModeSwitch";
+import LogOut from "./LogOut";
+import UserPhoto from "./UserPhoto";
 
 const Navbar = () => {
   return (
     <div className="flex justify-between text-xl mt-8 max-w-6xl items-center m-auto px-4">
-      <div className="flex text-center justify-center items-center group cursor-pointer">
-        <BiLogOutCircle className="text-4xl cursor-pointer hover:text-red-500 transition-colors group-hover:text-red-500" />
-        <p className=" hidden sm:inline-flex ml-1 text-center group-hover:text-red-500 transition-colors">Logout</p>
-      </div>
-
+      <LogOut/>
       <h1 className="text-4xl font-bold">My Notes</h1>
-      <div className="flex justify-center items-center">
-        <DarkModeSwitch  />
-        <h4>Your Name</h4>
+      <div className="flex justify-center items-center space-x-4">
+        <DarkModeSwitch />
+        <UserPhoto/>
       </div>
     </div>
   );
