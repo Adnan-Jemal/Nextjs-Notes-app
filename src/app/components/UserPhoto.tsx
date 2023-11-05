@@ -14,7 +14,7 @@ const UserPhoto = () => {
             src={user.authUser.photo}
             alt="user photo"
           />
-          <p>{user.authUser.name}</p>
+          <p className="hidden sm:inline-flex">{user.authUser.name}</p>
         </div>
       )}{" "}
     </div>
