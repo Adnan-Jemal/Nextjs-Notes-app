@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { MdLightMode } from "react-icons/md";
-import { BsFillMoonFill } from "react-icons/bs";
+import { BsFillMoonStarsFill } from "react-icons/bs";
 import { useTheme } from "next-themes";
 
 const DarkModeSwitch = () => {
@@ -16,7 +16,7 @@ const DarkModeSwitch = () => {
       {mounted && (resolvedTheme === "dark" ? (
         <MdLightMode className="cursor-pointer" onClick={() => setTheme("light")} />
       ) : (
-        <BsFillMoonFill className="cursor-pointer" onClick={() => setTheme("dark")} />)
+        <BsFillMoonStarsFill className="cursor-pointer" onClick={() => setTheme("dark")} />)
       )}
     </>
   );

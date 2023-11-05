@@ -17,7 +17,7 @@ export default function useFirebaseAuth() {
     if (!user) {
       setAuthUser(null);
       setIsLoading(false);
-      return "no user";
+      return;
     }
     setAuthUser({
       uid: user.uid,
@@ -33,13 +33,15 @@ export default function useFirebaseAuth() {
     return () => unsubscribe;
   }, []);
 
+  const LogOut = ()=>Signo
+
   return { authUser, isLoading };
 }
 
 export function AuthUserProvider({ children }) {
-  const Uauth = useFirebaseAuth();
+  const auth = useFirebaseAuth();
   return (
-    <AuthUserContext.Provider value={Uauth}>
+    <AuthUserContext.Provider value={auth}>
       {children}
     </AuthUserContext.Provider>
   );
