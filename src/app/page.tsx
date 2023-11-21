@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <main className="">
       <SignInPopup/>
-      <AddNotePopup Opened={false}/>
+      <AddNotePopup/>
       
       <Navbar/>
       <Notes/>
