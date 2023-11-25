@@ -5,16 +5,18 @@ import DeleteNote from "./DeleteNoteBtn";
 import EditNoteBtn from "./EditNoteBtn";
 type props = {
   value: string;
+  NoteId: string;
 };
-const Note = ({ value }: props) => {
+const Note = ({ value, NoteId }: props) => {
   const [opened, setOpened] = useState(false);
   const [note, setNote] = useState(value);
   const [editNote, setEditNote] = useState(false);
-  const textareaRef = useRef<HTMLTextAreaElement | null>(null)
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   useEffect(() => {
-    (editNote&&textareaRef.current!=null)&& textareaRef.current.focus()
-  }, [editNote])
-  
+    editNote && textareaRef.current != null && textareaRef.current.focus();
+  }, [editNote]);
+
+
   return (
     <div className="bg-white h-64 w-[60%] sm:max-w-[300px] rounded-3xl dark:bg-black relative text-center mb-10">
       <BsThreeDots
@@ -25,19 +27,22 @@ const Note = ({ value }: props) => {
       />
       {opened && (
         <div className="flex gap-5 justify-center items-center">
-          <DeleteNote /> <EditNoteBtn setEdit={setEditNote} edit={editNote} />
+          <DeleteNote noteId={NoteId} />{" "}
+          <EditNoteBtn setEdit={setEditNote} edit={editNote} />
         </div>
       )}
 
       <div className="h-64 rounded-3xl overflow-hidden">
         <textarea
-        ref={textareaRef}
+          ref={textareaRef}
           autoFocus={!editNote}
           value={note}
           readOnly={!editNote}
           onChange={(e) => setNote(e.target.value)}
           placeholder="Enter your note here"
-          className={`h-full w-full resize-none outline-none text-lg ${editNote&&'text-xl'}  p-4 bg-gray-100 dark:bg-gray-800`}
+          className={`h-full w-full resize-none outline-none text-lg ${
+            editNote && "text-xl"
+          }  p-4 bg-gray-100 dark:bg-gray-800`}
         />
       </div>
     </div>
