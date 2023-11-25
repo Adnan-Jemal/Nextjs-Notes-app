@@ -16,16 +16,25 @@ const Notes = () => {
   const loggedIn = user === null && !userLoading;
   const notesQuery =
     user && query(collection(db, "Notes"), where("uid", "==", user?.uid));
+<<<<<<< HEAD
   const [values, loading, error] = useCollection(notesQuery);
   userError && console.error(userError);
   error && console.error(error);
+=======
+  const [values, loading, error, snapshot] = useCollectionData(notesQuery);
+>>>>>>> b875af64a568ad1895e2b90ce57c48fc4ca2bb96
 
   loggedIn && router.push("/signin");
 
   return (
     <div className="flex flex-wrap justify-center max-w-6xl my-20 gap-10 items-center m-auto">
+<<<<<<< HEAD
       {values?.docs.map((note) => (
         <Note key={note.id} value={note.data().note} NoteId={note.id} />
+=======
+      {values?.map((note) => (
+        <Note key={note.id} value={note.note} />
+>>>>>>> b875af64a568ad1895e2b90ce57c48fc4ca2bb96
       ))}
     </div>
   );
