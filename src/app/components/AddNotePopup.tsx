@@ -2,19 +2,32 @@
 import React from "react";
 import AddBtn from "./AddBtn";
 import { useState } from "react";
+import{addDoc, collection, serverTimestamp} from 'firebase/firestore'
+import { auth, db } from "../config/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const AddNotePopup = () => {
   const [opened, setOpened] = useState(false);
   const [note, setNote] = useState("");
+  const [user,loading] = useAuthState(auth)
+  
 
   const HandelAdd = () => {
     setOpened(!opened);
-    console.log(opened);
   };
-  const handelSubmit = (e: { preventDefault: () => void }) => {
+  const handelSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     note ? setOpened(false) : alert("Please Enter Your Note");
-    setNote('')
+    try {
+      const newDoc = await addDoc(collection(db,'Notes'),{uid:user?.uid,note:note,date:serverTimestamp()})
+    } catch (err) {
+      console.error(err)
+    }
+    
+ 
+
+    setNote("");
+    
   };
   return (
     <>
@@ -34,7 +47,7 @@ const AddNotePopup = () => {
             />
             <button
               type="submit"
-              className="bg-blue-300 py-2 px-4 rounded-xl hover:opacity-80 w-[50%] text-white dark:text-black mb-2 transition-all duration-300 text-lg"
+              className="bg-white dark:bg-blue-300 py-2 px-4 rounded-xl hover:opacity-80 w-[50%] text-blue-300 dark:text-black mb-2 transition-all duration-300 text-lg"
             >
               Add Note
             </button>

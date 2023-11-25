@@ -2,10 +2,12 @@
 import React, { useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
 import DeleteNote from './DeleteNoteBtn'
-
-const Note = () => {
+type props={
+  value:string
+}
+const Note = ({value}:props) => {
   const [opened, setOpened] = useState(false);
-  const [note, setNote] = useState("");
+  const [note, setNote] = useState(value);
   return (
     <div className="bg-white h-64 w-[60%] sm:max-w-[300px] rounded-3xl dark:bg-black relative text-center mb-10">
       <BsThreeDots

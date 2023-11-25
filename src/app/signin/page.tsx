@@ -1,20 +1,22 @@
 "use client";
 
-import { useAuth } from "../firebase/auth";
-import { signInWithPopup } from "firebase/auth";
-import { auth } from "../firebase/firebase";
-import { GoogleAuthProvider } from "firebase/auth";
+import { useSignInWithGoogle, useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../config/firebase";
 import { useRouter } from "next/navigation";
 
 const SignInPage = () => {
-  const authUser = useAuth();
   const router = useRouter();
+  const [signInWithGoogle] = useSignInWithGoogle(auth);
+  const [user, loading, error] = useAuthState(auth);
+  const loggedIn = user != null && !loading;
 
-  const loggedIn = authUser.authUser != null && authUser.isLoading === false;
   loggedIn && router.replace("/");
   const SignIn = async () => {
-    const provider = new GoogleAuthProvider();
-    return await signInWithPopup(auth, provider);
+    try {
+      await signInWithGoogle();
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
