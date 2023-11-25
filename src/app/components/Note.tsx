@@ -27,8 +27,8 @@ const Note = ({ value, NoteId }: props) => {
       />
       {opened && (
         <div className="flex gap-5 justify-center items-center">
-          <DeleteNote noteId={NoteId} />{" "}
-          <EditNoteBtn setEdit={setEditNote} edit={editNote} />
+          <DeleteNote noteId={NoteId} />
+          <EditNoteBtn setEdit={setEditNote} noteId={NoteId} note={note} edit={editNote} />
         </div>
       )}
 
