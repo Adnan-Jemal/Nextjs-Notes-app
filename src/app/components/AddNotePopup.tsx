@@ -18,11 +18,12 @@ const AddNotePopup = () => {
   const handelSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     note ? setOpened(false) : alert("Please Enter Your Note");
-    try {
+    if(note)
+    {try {
       const newDoc = await addDoc(collection(db,'Notes'),{uid:user?.uid,note:note,date:serverTimestamp()})
     } catch (err) {
       console.error(err)
-    }
+    }}
     
  
 

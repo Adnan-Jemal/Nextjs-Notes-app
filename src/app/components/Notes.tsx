@@ -10,6 +10,7 @@ const Notes = () => {
   const [user, loading, error] = useAuthState(auth);
   const loggedIn = user === null && !loading;
   loggedIn && router.push("/signin");
+  
   return (
     <div className="flex flex-wrap justify-center max-w-6xl my-20 gap-10 items-center m-auto">
         <Note value="hello"/>
