@@ -9,7 +9,10 @@ import { auth, db } from "../config/firebase";
 import { useRouter } from "next/navigation";
 import Note from "./Note";
 import { collection, orderBy, query, where } from "firebase/firestore";
-
+type AllNotesType = {
+  id: string;
+  note: string;
+};
 const Notes = () => {
   const router = useRouter();
   const [user, userLoading, userError] = useAuthState(auth);
@@ -26,15 +29,19 @@ const Notes = () => {
   error && console.error(error);
 
   loggedIn && router.push("/signin");
-
+  const allNotes: AllNotesType[] = [];
+  values?.docs.map((note) =>
+    allNotes.push({ id: note.id, note: note.data().note })
+  );
   return (
     <div className="flex flex-wrap justify-center max-w-6xl my-20 gap-10 items-center m-auto">
-      {values?.docs ? (
-        values?.docs.map((note) => (
-          <Note key={note.id} value={note.data().note} NoteId={note.id}  />
-        ))
-      ) : (
-        <h1 className="text-2xl">...</h1>
+      {allNotes.map((note) => (
+        <Note key={note.id} NoteId={note.id} value={note.note} />
+      ))}
+      {(!loading && values?.docs.length == 0&&!userLoading) && (
+        <h1 className="text-2xl  absolute m-auto top-[50%] text-center">
+          You do'nt have any notes, Please click on add button (+) to add a note
+        </h1>
       )}
     </div>
   );
