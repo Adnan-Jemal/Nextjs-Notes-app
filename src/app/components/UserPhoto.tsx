@@ -6,6 +6,7 @@ import { HiOutlineUserCircle } from "react-icons/hi2";
 
 const UserPhoto = () => {
   const [user, loading, error] = useAuthState(auth);
+  const userPhoto: string|undefined = user?.photoURL??undefined
 
   return (
     <div>
@@ -14,7 +15,7 @@ const UserPhoto = () => {
           {user === (undefined||null) ? (
             <HiOutlineUserCircle className="text-5xl" />
           ) : (
-            <img src={user?.photoURL} alt="" className="h-10 rounded-full" />
+            <img src={userPhoto} alt="" className="h-10 rounded-full" />
           )}
 
           <div className="">
