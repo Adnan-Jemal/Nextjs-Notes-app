@@ -4,8 +4,8 @@ import { db } from "../config/firebase";
 
 const DeleteNoteBtn = ({ noteId }:{noteId:string}) => {
   const deleteNote = async () => {
-    
-    await deleteDoc(doc(db, "Notes", noteId));
+    const confirmDelete=confirm('Are you sure you want to delete this note?')
+    confirmDelete&&await deleteDoc(doc(db, "Notes", noteId));
   };
   return (
     <>
