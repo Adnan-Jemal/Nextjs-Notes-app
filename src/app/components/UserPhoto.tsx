@@ -1,23 +1,28 @@
 "use client";
 import React from "react";
-import {useAuthState} from 'react-firebase-hooks/auth'
+import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../config/firebase";
- 
+import { HiOutlineUserCircle } from "react-icons/hi2";
+
 const UserPhoto = () => {
-  const [user, loading, error] = useAuthState(auth)
-  
+  const [user, loading, error] = useAuthState(auth);
+
   return (
     <div>
       {user !== null && loading === false && (
         <div className="flex items-center space-x-2">
-          <img
-            className="h-10 w-10 rounded-full"
-            src={user?.photoURL}
-            alt="user photo"
-          />
-          <p className="hidden sm:inline-flex">{user?.displayName}</p>
-        </div>)}
-      
+          {user === (undefined||null) ? (
+            <HiOutlineUserCircle className="text-5xl" />
+          ) : (
+            <img src={user?.photoURL} alt="" className="h-10 rounded-full" />
+          )}
+
+          <div className="">
+            <p className="hidden sm:inline-flex">{user?.displayName}</p>
+            <p className="text-sm hidden sm:flex">{user?.email}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

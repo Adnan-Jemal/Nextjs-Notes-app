@@ -40,7 +40,7 @@ const Notes = () => {
       ))}
       {(!loading && values?.docs.length == 0&&!userLoading) && (
         <h1 className="text-2xl  absolute m-auto top-[50%] text-center">
-          You do'nt have any notes, Please click on add button (+) to add a note
+          You do not have any notes, Please click on add button (+) to add a note
         </h1>
       )}
     </div>
