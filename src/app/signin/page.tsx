@@ -21,7 +21,9 @@ const SignInPage = () => {
 
   return (
     <>
-      <div className=" absolute top-0 left-0 right-0 bottom-0 m-auto overflow-hidden bg-blue-300 dark:bg-gray-700 items-center z-50">
+      <div className="flex justify-center items-center  bg-blue-300 dark:bg-gray-700 ">
+        <h1 className=" mt-12 text-5xl ">NOTES</h1>
+
         <div className="h-80 w-80 bg-blue-300 dark:bg-gray-700 m-auto absolute top-0 bottom-0 left-0 right-0 rounded-3xl flex justify-center items-center gap-2">
           <h1 className="pb-3 text-2xl">Please SignIn To Continue</h1>
           <button
